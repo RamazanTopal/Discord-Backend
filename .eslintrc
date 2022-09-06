@@ -1,1 +1,9 @@
-{"extends": "airbnb"}
+{
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "env": {
+    "browser": true
+  },
+}
