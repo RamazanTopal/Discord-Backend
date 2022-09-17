@@ -5,7 +5,7 @@ exports.register = async ({
   email, password, name, surname, gender,
 }) => {
   try {
-    await userModel.create({
+    return await userModel.create({
       email, password, name, surname, gender,
     });
   } catch (error) {

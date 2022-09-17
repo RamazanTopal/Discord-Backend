@@ -1,6 +1,6 @@
 class ApiError extends Error {
   constructor({
-    status, message, errorCode, data = {},
+    status, message, errorCode, data = {}, errorType,
   }) {
     super(message);
     Error.captureStackTrace(this, this.constructor);
@@ -10,6 +10,7 @@ class ApiError extends Error {
     this.message = message;
     this.errorCode = errorCode;
     this.data = data;
+    this.errorType = errorType;
   }
 
   toObject() {
@@ -18,6 +19,7 @@ class ApiError extends Error {
       message: this.message,
       errorCode: this.errorCode,
       data: this.data,
+      errorType: this.errorType,
     };
   }
 }

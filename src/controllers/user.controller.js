@@ -6,10 +6,10 @@ exports.register = async (req, res, next) => {
     const {
       email, password, name, surname, gender,
     } = req.body;
-    await userService.register({
+    const userInformation = await userService.register({
       email, password, name, surname, gender,
     });
-    return res.json({ success: true });
+    return res.json({ success: true, userInformation });
   } catch (error) {
     return next(error);
   }
