@@ -8,7 +8,7 @@ const updateFriendsPendingInvitations = async (userId) => {
 
     const receiverList = serverStore.getActiveConnections(userId);
 
-    const io = serverStore.getSockerServerInstance();
+    const io = serverStore.getSocketServerInstance();
 
     receiverList.forEach((receiverSocketId) => {
       io.to(receiverSocketId).emit('friends-invitations', {
@@ -34,7 +34,7 @@ const updateFriends = async (userId) => {
           name: f.name,
         }));
 
-        const io = serverStore.getSockerServerInstance();
+        const io = serverStore.getSocketServerInstance();
 
         receiverList.forEach((receiverSocketId) => {
           io.to(receiverSocketId).emit('friends-list', {

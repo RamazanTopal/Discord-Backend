@@ -6,7 +6,7 @@ const setSocketServerInstance = (ioInstance) => {
   io = ioInstance;
 };
 
-const getSockerServerInstance = () => io;
+const getSocketServerInstance = () => io;
 
 const addNewConnectedUser = ({ socketId, userId }) => {
   connectedUsers.set(socketId, { userId });
@@ -43,6 +43,6 @@ module.exports = {
   removeConnectedUser,
   getActiveConnections,
   setSocketServerInstance,
-  getSockerServerInstance,
+  getSocketServerInstance,
   getOnlineUsers,
 };

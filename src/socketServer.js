@@ -2,6 +2,8 @@ const authSocket = require('./middlewares/authSocket');
 const { setSocketServerInstance, getOnlineUsers } = require('./serverStore');
 const disconnectHandler = require('./socketHandlers/disconnectHandler');
 const newConnectionHandler = require('./socketHandlers/newConnectionHandler');
+const directMessageHandler = require('./socketHandlers/directMessageHandler');
+const directChatHistoryHandler = require('./socketHandlers/directChatHistoryHandler');
 
 const registerSocketServer = (server) => {
   // eslint-disable-next-line global-require
@@ -26,6 +28,12 @@ const registerSocketServer = (server) => {
   io.on('connection', (socket) => {
     newConnectionHandler(socket, io);
     emitOnlineUsers();
+    socket.on('direct-message', (data) => {
+      directMessageHandler(socket, data);
+    });
+    socket.on('direct-chat-history', (data) => {
+      directChatHistoryHandler(socket, data);
+    });
     socket.on('disconnect', () => {
       disconnectHandler(socket);
     });
